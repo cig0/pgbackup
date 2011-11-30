@@ -49,14 +49,14 @@ rm -f $BKPDIR/*
 # Realiza los backups
 if [ "$binary" == "yes" ]; then
   echo "Full Binary Dump..."
-  $IONICE -c2 -n7 $PGDUMP -h $HOST -U $DBUSER -Fc -b -v -f $BKPDIR/$DBNAME-full-$DATE.pgdump $DBNAME > $BKPLOG 2>&1
+  $IONICE -c2 -n7 $PGDUMP -h $HOST -U $DBUSER -Fc -b -v -f $BKPDIR/$DBNAME-$DATE.pgdump $DBNAME > $BKPLOG 2>&1
   [ $? -ne 0 ] && echo "[Failed]" && echo "Error while doing the full binary dump." | tee $BKPLOG && exit
-  echo "$(date +%c): Successfully dumped $DBNAME database data to $DBNAME-full-$DATE.pgdump" >> $BKPLOG
+  echo "$(date +%c): Successfully dumped $DBNAME database data to $DBNAME-$DATE.pgdump" >> $BKPLOG
 else
   echo "Full Text Dump..."
-  $IONICE -c2 -n7 $PGDUMP -h $HOST -U $DBUSER -c -v -f $BKPDIR/$DBNAME-full-$DATE.sql $DBNAME > $BKPLOG 2>&1
+  $IONICE -c2 -n7 $PGDUMP -h $HOST -U $DBUSER -c -v -f $BKPDIR/$DBNAME-$DATE.sql $DBNAME > $BKPLOG 2>&1
   [ $? -ne 0 ] && echo "[Failed]" && echo "Error while doing the full text dump." | tee $BKPLOG && exit
-  echo "$(date +%c): Successfully dumped $DBNAME database data to $DBNAME-full-$DATE.sql" >> $BKPLOG
+  echo "$(date +%c): Successfully dumped $DBNAME database data to $DBNAME-$DATE.sql" >> $BKPLOG
 fi
 
 # Copia el backup a un host remoto
