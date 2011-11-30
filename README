@@ -1,0 +1,30 @@
+Script de backup para PostgreSQL
+
+Hace backup de una base de datos especifica, tiene la opcion de generar
+backups en texto plano o binarios. Y tambien tiene la opcion de
+copiar el backup a un host remoto via SSH.
+
+Se deben configurar los siguientes datos dentro del script:
+DBUSER="postgres"
+DBNAME="db"
+HOST="localhost"
+BKPDIR="/var/backups/dbs"
+
+Uso:
+./pgbackup.sh [--binary] [--copy=user@host:/path]
+
+Ejemplos:
+
+./pgbackup.sh
+Genera el backup de la base de datos en texto plano y lo guarda en el
+directorio especificado en la variable BKPDIR dentro del script.
+
+./pgbackup.sh --binary
+Genera el backup de la base de datos en modo binario y lo guarda en el
+directorio especificado en la variable BKPDIR dentro del script.
+
+./pgbackup.sh --copy=root@192.168.1.22:/var/backups/
+Genera el backup de la base de datos en texto plano y lo guarda en el 
+directorio especificado en la variable BKPDIR dentro del script. Y luego
+copia el backup generado al host 192.168.1.22 en el directorio
+/var/backups
