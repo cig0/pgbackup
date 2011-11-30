@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Author: Pablo Gutiérrez del Castillo
+# E-Mail: pablogutierrezdelc@gmail.com
+#
 
 DBUSER="postgres"
 DBNAME="db3g"
